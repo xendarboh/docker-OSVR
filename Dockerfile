@@ -74,6 +74,49 @@ RUN git clone \
     && make install \
     && rm -rf /usr/local/src/jsoncpp
 
+# install latest OSVR-Core from the master branch
+ENV _OSVR_TAG=master
+RUN git clone \
+        --recursive \
+        --branch ${_OSVR_TAG} \
+        --depth 1 \
+        https://github.com/OSVR/OSVR-Core \
+        /usr/local/src/osvr-core
+
+# :TODO: replace the libusb above with this:
+RUN apt-get install -y --no-install-recommends \
+    libusb-1.0-0-dev
+
+RUN apt-get install -y --no-install-recommends \
+    libsdl2-dev
+
+ENV _NVIDIA_VERSION=352
+# xorg-edgers/ppa     -- nvidia drivers
+# multiverse          -- nvidia-cg and others
+# x11-xserver-utils   -- provides /usr/bin/xrandr
+RUN \
+    add-apt-repository -y ppa:xorg-edgers/ppa \
+    && add-apt-repository -y multiverse \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        libcuda1-${_NVIDIA_VERSION} \
+        nvidia-${_NVIDIA_VERSION} \
+        nvidia-cg-toolkit \
+        nvidia-libopencl1-${_NVIDIA_VERSION} \
+        nvidia-opencl-icd-${_NVIDIA_VERSION} \
+        x11-xserver-utils \
+        xdg-user-dirs
+
+# Note: make jobs are set to 1 to avoid this type of failure:
+#       apparmor="DENIED" operation="file_mmap" profile="docker-default" name="d/usr/include/x86_64-linux-gnu/bits/wordsize.h" pid=30713 comm="cmake" requested_mask="mr" denied_mask="mr" fsuid=0 ouid=0
+RUN cd /usr/local/src/osvr-core \
+    && mkdir build \
+    && cd build \
+    && cmake .. \
+        -DCMAKE_INSTALL_PREFIX=/usr/local \
+    && make -j1 \
+    && make install \
+    && rm -rf /usr/local/src/osvr-core
 
 #:    && rm -rf /var/lib/apt/lists/*
 #:
