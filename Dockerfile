@@ -36,9 +36,9 @@ RUN apt-get install -y --no-install-recommends \
         libusb-dev
 
 # install latest libfunctionality from source
-ENV _LIBFUNCIONALITY_TAG=master
+ENV _LIBFUNCTIONALITY_TAG=master
 RUN git clone \
-        --branch ${_LIBFUNCIONALITY_TAG} \
+        --branch ${_LIBFUNCTIONALITY_TAG} \
         --depth 1 \
         https://github.com/OSVR/libfunctionality \
         /usr/local/src/libfunctionality \
@@ -53,6 +53,26 @@ RUN git clone \
     && rm -rf /usr/local/src/libfunctionality
 
 
+# install latest jsoncpp
+ENV _JSONCPP_TAG=master
+RUN git clone \
+        --recursive \
+        --branch ${_JSONCPP_TAG} \
+        --depth 1 \
+        https://github.com/VRPN/jsoncpp \
+        /usr/local/src/jsoncpp \
+    && cd /usr/local/src/jsoncpp \
+    && mkdir build \
+    && cd build \
+    && cmake \
+        -D CMAKE_CXX_FLAGS=-fPIC \
+        -D CMAKE_INSTALL_PREFIX=/usr/local \
+        -D JSONCPP_LIB_BUILD_SHARED=OFF \
+        -D JSONCPP_WITH_CMAKE_PACKAGE=ON \
+        ../ \
+    && make -j${_JOBS} \
+    && make install \
+    && rm -rf /usr/local/src/jsoncpp
 
 
 #:    && rm -rf /var/lib/apt/lists/*
