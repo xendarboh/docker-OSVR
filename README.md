@@ -1,6 +1,15 @@
 Dockerized OSVR
 ===============
 
+This produces a docker image with the following installed:
+* all OSVR dependencies as described in the [OSVR Linux Build Instructions](https://github.com/OSVR/OSVR-Docs/blob/master/Getting-Started/Installing/Linux-Build-Instructions.md)
+* jsoncpp
+* libfunctionality
+* OSVR-Core
+
+## Note
+OpenGL is provided by nvidia, change the Dockerfile to match your system.
+
 ## Installation
 1. edit Dockerfile
    * set \_NVIDIA\_VERSION to match the nvidia binary version of the host OS
@@ -17,4 +26,5 @@ docker build -t osvr:latest .
 ```
 
 ## Reference
-* [https://github.com/OSVR/OSVR-Docs/blob/master/Getting-Started/Installing/Linux-Build-Instructions.md]
+* https://github.com/OSVR/OSVR-Docs/blob/master/Getting-Started/Installing/Linux-Build-Instructions.md
+* https://bitbucket.org/monkygames/osvr-core-ubuntu-build-script/src
