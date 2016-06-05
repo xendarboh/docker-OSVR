@@ -1,0 +1,38 @@
+#!/bin/bash
+_PWD="$(readlink -f $(dirname $0))"
+HOME_DIR=${_PWD}/../srv/osvr/home/x
+test ! -d ${HOME_DIR} && mkdir -p ${HOME_DIR}
+
+# pragmatically link to relevant running containers (osvr-server)
+LINKS=""
+for c in $(docker ps -q --filter "name=osvr-server")
+do
+    LINKS="$LINKS --link $(docker inspect --format='{{.Config.Hostname}}' $c)"
+done
+
+####################################
+# DEVICES
+####################################
+_OPTS_DEVICES=""
+for x in \
+    /dev/dri/card* \
+    /dev/loop* \
+    /dev/nvidia* \
+    /dev/snd/* \
+    /dev/video*
+do
+    test -c $x && test ! -L $x && _OPTS_DEVICES="$_OPTS_DEVICES --device=$x"
+done
+export _OPTS_DEVICES
+
+_PWD="$(readlink -f $(dirname $0))"
+${_PWD}/xlaunch.sh \
+    --env OSVR_HOST=osvr-server:3883 \
+    --hostname osvr-obs \
+    --name osvr-obs \
+    --rm \
+    -v ${HOME_DIR}:/home/x \
+    ${LINKS} \
+    osvr/obs:latest \
+    obs \
+    ${@}

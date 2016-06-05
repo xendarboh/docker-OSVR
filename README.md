@@ -4,7 +4,8 @@ Dockerized OSVR
 A collection of Dockerfiles to dockerize OSVR, including:
 * [OSVR-Core](OSVR-Core/README.md)
 * [OSVR-Tracker-Viewer](OSVR-Tracker-Viewer/README.md)
-* [OSVR-WebVR](OSVR-WebVR/README.md)
+* [OSVR-WebVR](OSVR-WebVR/README.md) for running OSVR-enabled Firefox
+* [Open Broadcaster Software](OBS/README.md) for mirroring/recording an HMD screen
 
 ## TODO
 - [ ] osvr_server Dockerfile for the specific purpose of running osvr_server
