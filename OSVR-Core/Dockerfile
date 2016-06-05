@@ -108,13 +108,12 @@ RUN git clone \
     && make install \
     && rm -rf /usr/local/src/osvr-core
 
+# create new user, grant sudo access
+RUN useradd -m -s /bin/bash -u ${_USER_ID} -G ${_USER_GROUPS} ${_USER} \
+  && echo "${_USER}:${_USER}" | chpasswd \
+  && echo "${_USER} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/${_USER} \
+  && chmod 0440 /etc/sudoers.d/${_USER}
 
-#:  # create new user, grant sudo access
-#:  RUN useradd -m -s /bin/bash -u ${_USER_ID} -G ${_USER_GROUPS} ${_USER} \
-#:    && echo "${_USER}:${_USER}" | chpasswd \
-#:    && echo "${_USER} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/${_USER} \
-#:    && chmod 0440 /etc/sudoers.d/${_USER}
-#:
 #:  # switch to user
 #:  ENV HOME=/home/${_USER} USER=${_USER} LC_ALL=${_LOCALE} LANG=${_LOCALE}
 #:  USER ${_USER}
