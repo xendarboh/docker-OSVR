@@ -2,16 +2,18 @@ Dockerized OSVR
 ===============
 
 A collection of Dockerfiles to dockerize OSVR, including:
-* OSVR-Core
-* OSVR-Tracker-Viewer
-* OSVR-WebVR
+* [OSVR-Core](OSVR-Core/README.md)
+* [OSVR-Tracker-Viewer](OSVR-Tracker-Viewer/README.md)
+* [OSVR-WebVR](OSVR-WebVR/README.md)
 
 ## TODO
 - [ ] osvr_server Dockerfile for the specific purpose of running osvr_server
 - [ ] remove --privileged from osvr_server.sh, determine specifically which devices are needed
 - [ ] remove nvidia/opengl from OSVR-Core if it is not needed
 - [x] install OSVR Tracker Viewer, after tested extract to its own Dockerfile
-- [ ] fix error: `D-Bus ... Failed to open "/etc/machine-id"`
+- [x] fix error: `D-Bus ... Failed to open "/etc/machine-id"`
+- [ ] WebVR: save firefox configuration to enable osvr
+- [ ] seperate osvr/server image from osvr/core
 
 
 ## Note
