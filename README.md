@@ -33,16 +33,18 @@ sudo /etc/init.d/udev restart
    * optionally, set \_USER\_ID to match the userid on the host OS that you want to own created files
 
 2. build
-```bash
-docker build -t osvr/core:latest OSVR-Core
-```
+
+    ```bash
+    docker build -t osvr/core:latest OSVR-Core
+    ```
 
 3. configure: place your osvr_server configuration files in the config/ directory
 
 4. run
-```bash
-bin/osvr_server.sh config/<your_osvr_server_config>.json
-```
+
+    ```bash
+    bin/osvr_server.sh config/<your_osvr_server_config>.json
+    ```
 
 ## Reference
 * https://github.com/OSVR/OSVR-Core/blob/master/doc/Building.md
@@ -55,13 +57,15 @@ bin/osvr_server.sh config/<your_osvr_server_config>.json
 # Other Information
 
 * to check the firmware version of the IR camera
-```bash
-lsusb -v -d 0bda:57e8 | grep bcdDevice
-```
+
+    ```bash
+    lsusb -v -d 0bda:57e8 | grep bcdDevice
+    ```
 
 * video has to be sent to the HMD in order for OSVRTrackerViewer to register display
-```
-[TrackerViewer] /me/head - got first report, enabling display!
-```
 
-* the environment variable OSVR_HOST is used to set the location of the osvr_server if not the default `localhost:3883`
+    ```
+    [TrackerViewer] /me/head - got first report, enabling display!
+    ```
+
+* the environment variable `OSVR_HOST` is used to set the location of the osvr_server if not the default `localhost:3883`

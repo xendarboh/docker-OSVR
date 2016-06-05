@@ -8,11 +8,13 @@ Viewer](https://github.com/OSVR/OSVR-Tracker-Viewer).
 1. build OSVR-Core docker image first
 
 2. build
-```bash
-docker build -t osvr/tracker-viewer:latest .
-```
+
+    ```bash
+    docker build -t osvr/tracker-viewer:latest OSVR-Tracker-Viewer
+    ```
 
 3. run
-```bash
-./OSVRTrackerViewer.sh
-```
+
+    ```bash
+    bin/OSVRTrackerViewer.sh
+    ```

@@ -9,16 +9,18 @@ that launches an instance of Firefox pre-configured for OSVR.
 1. build OSVR-Core docker image first
 
 2. build
-```bash
-docker build -t osvr/webvr:latest OSVR-WebVR
-```
+
+    ```bash
+    docker build -t osvr/webvr:latest OSVR-WebVR
+    ```
 
 3. run osvr_server if not already
 
 4. launch Firefox to experience WebVR with OSVR!
-```bash
-bin/webvr
-```
+
+    ```bash
+    bin/webvr
+    ```
 
 ## Reference
 * https://github.com/OSVR/OSVR-Docs/blob/master/Integrating-Game-Engines/WebVR/webvr.md
