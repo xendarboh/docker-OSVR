@@ -26,18 +26,14 @@ sudo /etc/init.d/udev restart
 
 2. build
 ```bash
-docker build -t osvr:latest .
+docker build -t osvr/core:latest .
 ```
 
-3. run; mount volume for a home directory (to perserve your projects)
-```bash
-./xlaunch -v /home/myuser/OSVR:/home/osvr/ osvr:latest
-```
+3. configure: place your osvr_server configuration files in the config/ directory
 
-4. start osvr_server
+4. run
 ```bash
-cd /usr/local/bin
-./osvr_server ../share/osvrcore/osvr_server_config.json
+./osvr_server.sh config/<your_osvr_server_config>.json
 ```
 
 ## Reference
@@ -45,10 +41,19 @@ cd /usr/local/bin
 * https://github.com/OSVR/OSVR-Docs/blob/master/Getting-Started/Installing/Linux-Build-Instructions.md
 * https://bitbucket.org/monkygames/osvr-core-ubuntu-build-script/src
 * https://github.com/OSVR/OSVR-Docs/blob/master/Configuring/osvrhdk.md
+* https://github.com/OSVR/OSVR-JSON-Schemas/blob/master/osvr_server_config_schema.json
+
 
 # Other Information
 
-## to check the firmware version of the IR camera
+* to check the firmware version of the IR camera
 ```bash
 lsusb -v -d 0bda:57e8 | grep bcdDevice
 ```
+
+* video has to be sent to the HMD in order for OSVRTrackerViewer to register display
+```
+[TrackerViewer] /me/head - got first report, enabling display!
+```
+
+* the environment variable OSVR_HOST is used to set the location of the osvr_server if not the default `localhost:3883`

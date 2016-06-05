@@ -109,32 +109,6 @@ RUN git clone \
     && rm -rf /usr/local/src/osvr-core
 
 
-########################################################################
-# :TODO: refactor below here:
-########################################################################
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        libopenscenegraph-dev
-
-# Note: (as of 2016-06-04) "make install" just litters /usr/local: https://github.com/OSVR/OSVR-Tracker-Viewer/issues/5
-#       so just use cp
-ENV _OSVRTRACKERVIEW_TAG=master
-RUN git clone \
-        --branch ${_OSVRTRACKERVIEW_TAG} \
-        --depth 1 \
-        --recursive \
-        https://github.com/OSVR/OSVR-Tracker-Viewer \
-        /usr/local/src/osvr-tracker-viewer \
-    && cd /usr/local/src/osvr-tracker-viewer \
-    && mkdir build \
-    && cd build \
-    && cmake .. \
-        -DCMAKE_INSTALL_PREFIX=/usr/local \
-    && make -j${_MAKE_JOBS} \
-    && cp OSVRTrackerView /usr/local/bin/ \
-    && rm -rf /usr/local/src/osvr-tracker-viewer
-
-
 #:  # create new user, grant sudo access
 #:  RUN useradd -m -s /bin/bash -u ${_USER_ID} -G ${_USER_GROUPS} ${_USER} \
 #:    && echo "${_USER}:${_USER}" | chpasswd \
@@ -145,3 +119,5 @@ RUN git clone \
 #:  ENV HOME=/home/${_USER} USER=${_USER} LC_ALL=${_LOCALE} LANG=${_LOCALE}
 #:  USER ${_USER}
 #:  WORKDIR /home/${_USER}
+
+WORKDIR /opt/osvr

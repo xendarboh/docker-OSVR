@@ -1,0 +1,6 @@
+{
+    "description": "The default config file as a public server, as used with the HDK, is fully auto-detected, so no configuration required.",
+    "server": {
+            "local": false
+        }
+}
