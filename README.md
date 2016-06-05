@@ -34,7 +34,21 @@ docker build -t osvr:latest .
 ./xlaunch -v /home/myuser/OSVR:/home/osvr/ osvr:latest
 ```
 
+4. start osvr_server
+```bash
+cd /usr/local/bin
+./osvr_server ../share/osvrcore/osvr_server_config.json
+```
+
 ## Reference
 * https://github.com/OSVR/OSVR-Core/blob/master/doc/Building.md
 * https://github.com/OSVR/OSVR-Docs/blob/master/Getting-Started/Installing/Linux-Build-Instructions.md
 * https://bitbucket.org/monkygames/osvr-core-ubuntu-build-script/src
+* https://github.com/OSVR/OSVR-Docs/blob/master/Configuring/osvrhdk.md
+
+# Other Information
+
+## to check the firmware version of the IR camera
+```bash
+lsusb -v -d 0bda:57e8 | grep bcdDevice
+```

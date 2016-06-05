@@ -5,6 +5,7 @@
 #     active X-windows session
 #   * map certain devices if present on the host
 #   * map volumes
+#   * add capabilities
 
 test -z "$1" && echo "USAGE: $0 (docker opts) <docker image> (command)" && exit 1
 
@@ -41,17 +42,18 @@ _OPTS_VOLUMES="
 ####################################
 # DEVICES
 ####################################
-_OPTS_DEVICES=""
-for x in \
-    /dev/dri/card* \
-    /dev/loop* \
-    /dev/nvidia* \
-    /dev/snd/seq \
-    /dev/ttyUSB* \
-    /dev/video*
-do
-    test -e $x && _OPTS_DEVICES="$_OPTS_DEVICES --device=$x:$x"
-done
+#_OPTS_DEVICES=""
+#for x in \
+#    /dev/dri/card* \
+#    /dev/loop* \
+#    /dev/nvidia* \
+#    /dev/snd/seq \
+#    /dev/ttyACM* \
+#    /dev/ttyUSB* \
+#    /dev/video*
+#do
+#    test -c $x && test ! -L $x && _OPTS_DEVICES="$_OPTS_DEVICES --device=$x"
+#done
 
 ####################################
 # CAPS
