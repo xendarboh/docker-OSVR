@@ -19,9 +19,11 @@ mirroring is not desired or available.
     ```
 
 ## osb settings recommendations
+| Name                 | Value     |
+| -------------------- | --------- |
 | Encoder              | x264      |
 | Max Bitrate (kb/s)   | 1000      |
-| Resolution downscale | 852 x 480 |
+| Resolution Downscale | 852 x 480 |
 | FPS                  | 15        |
 
 ## Reference
