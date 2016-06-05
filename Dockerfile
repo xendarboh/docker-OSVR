@@ -23,17 +23,20 @@ RUN locale-gen ${_LOCALE} \
 
 # multiverse                    -- nvidia-cg and others
 # ppa:george-edison55/cmake-3.x -- CMake 3.0 or newer
+# ppa:ubuntu-toolchain-r/test   -- gcc-5
 # ppa:xorg-edgers               -- nvidia drivers
 # x11-xserver-utils             -- provides /usr/bin/xrandr
 RUN apt-get update \
     && apt-get install -y software-properties-common \
     && add-apt-repository -y multiverse \
     && add-apt-repository -y ppa:george-edison55/cmake-3.x \
+    && add-apt-repository -y ppa:ubuntu-toolchain-r/test \
     && add-apt-repository -y ppa:xorg-edgers/ppa \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
-        build-essential \
         cmake \
+        g++-5 \
+        gcc-5 \
         git \
         libboost${_BOOST_VERSION}-dev \
         libboost-filesystem${_BOOST_VERSION}-dev \
@@ -49,6 +52,8 @@ RUN apt-get update \
         nvidia-opencl-icd-${_NVIDIA_VERSION} \
         x11-xserver-utils \
         xdg-user-dirs \
+    && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 50 \
+    && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 50 \
     && rm -rf /var/lib/apt/lists/*
 
 # install latest libfunctionality from source
