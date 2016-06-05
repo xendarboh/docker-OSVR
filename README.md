@@ -12,7 +12,7 @@ A collection of Dockerfiles to dockerize OSVR, including:
 - [ ] remove nvidia/opengl from OSVR-Core if it is not needed
 - [x] install OSVR Tracker Viewer, after tested extract to its own Dockerfile
 - [x] fix error: `D-Bus ... Failed to open "/etc/machine-id"`
-- [ ] WebVR: save firefox configuration to enable osvr
+- [x] WebVR: save firefox configuration to enable osvr
 - [ ] seperate osvr/server image from osvr/core
 
 

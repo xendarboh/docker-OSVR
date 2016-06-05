@@ -13,6 +13,10 @@ RUN wget -qO - \
         "https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-${_FIREFOX_TAG}.tar.bz2" \
         | tar xvj -C /opt/
 
+# set firefox default prefs to enable and configure OSVR
+ADD mozilla.cfg /opt/firefox/
+ADD local-settings.js /opt/firefox/defaults/pref/
+
 # fix D-bus warnings from firefox
 RUN dbus-uuidgen > /etc/machine-id
 
