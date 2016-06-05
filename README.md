@@ -6,10 +6,10 @@ A collection of Dockerfiles to dockerize OSVR, including:
 * OSVRTrackerViewer
 
 ## TODO
-[ ] osvr_server Dockerfile for the specific purpose of running osvr_server
-[ ] remove --privileged from osvr_server.sh, determine specifically which devices are needed
-[ ] remove nvidia/opengl from OSVR-Core if it is not needed
-[x] install OSVR Tracker Viewer, after tested extract to its own Dockerfile
+- [ ] osvr_server Dockerfile for the specific purpose of running osvr_server
+- [ ] remove --privileged from osvr_server.sh, determine specifically which devices are needed
+- [ ] remove nvidia/opengl from OSVR-Core if it is not needed
+- [x] install OSVR Tracker Viewer, after tested extract to its own Dockerfile
 
 ## Note
 OpenGL is provided by nvidia, change the Dockerfile to match your host.
