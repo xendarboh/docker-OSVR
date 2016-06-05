@@ -15,12 +15,8 @@ done
 ####################################
 _OPTS_DEVICES=""
 for x in \
-    /dev/dri/card* \
-    /dev/loop* \
     /dev/nvidia* \
     /dev/snd/* \
-    /dev/ttyACM* \
-    /dev/ttyUSB* \
     /dev/video*
 do
     test -c $x && test ! -L $x && _OPTS_DEVICES="$_OPTS_DEVICES --device=$x"
