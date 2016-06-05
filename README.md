@@ -1,15 +1,18 @@
 Dockerized OSVR
 ===============
 
-This produces a docker image with the following installed:
-* all OSVR dependencies as described in the [OSVR Linux Build
-  Instructions](https://github.com/OSVR/OSVR-Docs/blob/master/Getting-Started/Installing/Linux-Build-Instructions.md)
-* jsoncpp
-* libfunctionality
+A collection of Dockerfiles to dockerize OSVR, including:
 * OSVR-Core
+* OSVRTrackerViewer
+
+## TODO
+[ ] osvr_server Dockerfile for the specific purpose of running osvr_server
+[ ] remove --privileged from osvr_server.sh, determine specifically which devices are needed
+[ ] remove nvidia/opengl from OSVR-Core if it is not needed
+[x] install OSVR Tracker Viewer, after tested extract to its own Dockerfile
 
 ## Note
-OpenGL is provided by nvidia, change the Dockerfile to match your system.
+OpenGL is provided by nvidia, change the Dockerfile to match your host.
 
 ## Host Setup
 (optional) Install udev rules for OSVR HDK group permissions (plugdev) and
@@ -20,13 +23,13 @@ sudo /etc/init.d/udev restart
 ```
 
 ## Installation
-1. edit Dockerfile
+1. edit OSVR-Core/Dockerfile
    * set \_NVIDIA\_VERSION to match the nvidia binary version of the host OS
    * optionally, set \_USER\_ID to match the userid on the host OS that you want to own created files
 
 2. build
 ```bash
-docker build -t osvr/core:latest .
+docker build -t osvr/core:latest OSVR-Core
 ```
 
 3. configure: place your osvr_server configuration files in the config/ directory

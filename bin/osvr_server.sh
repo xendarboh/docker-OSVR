@@ -1,6 +1,6 @@
 #!/bin/bash
 _PWD="$(readlink -f $(dirname $0))"
-OSVR_SERVER_CONFIG_DIR=${_PWD}/config
+OSVR_SERVER_CONFIG_DIR=${_PWD}/../config
 
 ####################################
 # DEVICES
