@@ -22,5 +22,6 @@ Unity](https://github.com/OSVR/OSVR-Unity).
     ```
 
 ## Reference
+* https://github.com/OSVR/OSVR-Unity/blob/master/GettingStarted.md
 * http://forum.unity3d.com/threads/unity-on-linux-release-notes-and-known-issues.350256/
 * https://github.com/tomwillfixit/unity3d/blob/master/Dockerfile
