@@ -26,6 +26,10 @@ mirroring is not desired or available.
 | Resolution Downscale | 852 x 480 |
 | FPS                  | 15        |
 
+## Notes
+* If direct preview mode does not work, use a particular window (that gets
+  fullscreened on the HMD) as an obs `Source`.
+
 ## Reference
 * http://wiki.osvr.com/doku.php?id=obsproject
 * https://obsproject.com/download#linux
