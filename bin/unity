@@ -10,28 +10,13 @@ do
     LINKS="$LINKS --link $(docker inspect --format='{{.Config.Hostname}}' $c)"
 done
 
-####################################
-# DEVICES
-####################################
-_OPTS_DEVICES=""
-for x in \
-    /dev/nvidia* \
-    /dev/snd/* \
-    /dev/video*
-do
-    test -c $x && test ! -L $x && _OPTS_DEVICES="$_OPTS_DEVICES --device=$x"
-done
-export _OPTS_DEVICES
-
 ${_PWD}/xlaunch.sh \
     --env OSVR_HOST=osvr-server:3883 \
-    --hostname osvr-webvr \
-    --name osvr-webvr \
+    --hostname osvr-unity \
+    --name osvr-unity \
+    --privileged \
     --rm \
     -v ${HOME_DIR}:/home/x \
     ${LINKS} \
-    osvr/webvr:latest \
-    /opt/firefox/firefox \
-        --no-remote \
-        https://mozvr.com/ \
+    osvr/unity:latest \
     ${@}

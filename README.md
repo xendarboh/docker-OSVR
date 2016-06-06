@@ -7,13 +7,17 @@ A collection of Dockerfiles to dockerize OSVR, including:
 * [OSVR-WebVR](OSVR-WebVR/README.md) for running OSVR-enabled Firefox
 * [Open Broadcaster Software](OBS/README.md) for mirroring/recording an HMD screen
 
+Developing:
+* [OSVR-Unity](OSVR-Unity/README.md)
+
 ## TODO
-- [ ] OSVR-Unity
+- [ ] OSVR-Unity palace demo
 - [ ] OSVR-Unreal
 - [ ] OSVR-SteamVR
 - [ ] seperate osvr/server image from osvr/core
 - [ ] remove --privileged from osvr_server.sh if possible, determine specifically which devices are needed
 - [ ] remove nvidia/opengl from OSVR-Core if it is not needed
+- [ ] extract common package deps into base image (wget)
 
 ## Note
 OpenGL is provided by nvidia, change the Dockerfile to match your host.
